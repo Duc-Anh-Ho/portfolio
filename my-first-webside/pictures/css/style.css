@@ -1,0 +1,453 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700;800&family=Oswald:wght@700&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+/* <!-- Tắt cái quảng cáo của 000webhost--> */
+.disclaimer {
+    display:none;
+ }
+
+ * {
+    /* font-family: 'Nunito', sans-serif; */
+    /* font-family: 'Open Sans', sans-serif; */
+    /* font-family: 'Oswald', sans-serif; */
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    box-sizing: content-box;
+    color: whitesmoke;
+}
+
+header {
+    top: 0;
+    height: 5.75vw;
+    /* height: 10%; */
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.93);
+    position: fixed;
+    z-index: 1;
+    display: flex;
+}
+
+.menu-bar{
+    position: relative;
+    display: flex;
+    width: 70vw;
+    align-content: center;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.menu-bar a{
+    font-weight: bolder;
+    font-size: 1.2vw;
+    text-transform: uppercase;
+}
+
+a:hover{
+    opacity: 0.7;
+    text-decoration:underline;
+}
+
+
+#logo{
+    position: absolute;
+    top: 1.45vw;
+    left: 1vw;
+    transform: rotate(-22deg);
+    font-size: 1.95vw;
+    font-weight: 900;
+    border: 0.35vw solid #f09b51;
+    border-radius: 1vw;
+    color: #f09b51;
+}
+
+#logo:hover{
+    text-decoration: none;
+    opacity: 1;
+}
+
+.slogan-banner{
+    position: relative;
+    border-top: rgba(0, 0, 0, 0.95) 5.75vw;
+    background-image: url("../pictures/Landmark-81-2.jpg");
+    background-size: cover;
+    height: 43.5vw;
+    width: 100%;
+}   
+
+.slogan-banner article{
+    position: relative;
+    width: 28vw;
+    top: 8.8vw;
+    left: 10vw;
+    color: whitesmoke;
+    font-size: 2vw;
+    font-weight: 900;
+    background-color: rgba(0, 0, 0, 0.33);
+    border-radius: 1.2vw;
+}
+
+
+.slogan-banner article p{
+    font-size: 0.815vw;
+    font-weight: 500;
+    letter-spacing: 0.04vw;
+    margin-top: 1vw;
+    text-align: justify;
+}
+
+.slogan-banner article a p{
+    color: whitesmoke;
+    font-size: 1.1vw;
+    font-weight: 600;
+    text-decoration: underline;
+    margin-top: 0.4vw;
+}
+
+.slogan-banner article a p:hover{
+    opacity: 0.7;
+    text-decoration: underline;
+}
+
+.welcome {
+    height: 7.5vw;
+    background-color:rgba(0, 0, 0, 0.98);
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+}
+
+.welcome article {
+    text-align: center;
+    letter-spacing: 0.04vw;
+}
+
+.welcome article h2 {
+    font-size: 1.5vw;
+    font-weight: 500;
+    margin: 1.1vw 0;
+    text-transform: capitalize; 
+}
+
+.welcome article p {
+    font-size: 0.8vw;
+    font-weight: 300;
+}
+
+.middle{
+    position: relative;
+    height: 43vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color:rgba(0, 0, 0, 0.98)
+}
+
+.middle-column{
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+}
+
+.middle-box{
+    width: calc(7vw * 4);
+    height: calc(5vw * 4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.middle-box img{
+    flex: 0;
+    width: calc(7vw * 4 - 1.4vw);
+    object-fit: cover;
+    border-radius: 1.75vw;
+    /* display: none; */
+}
+
+.middle-box a {
+    position: absolute;
+    color: whitesmoke;
+    font-size: 1.5vw;
+    font-weight: 500;
+    text-shadow: 0.5vw 0.5vw 0.75vw black;
+    text-transform: capitalize; 
+}
+
+footer {
+    height: 7.5vw;
+    background-color:rgba(0, 0, 0, 0.98); 
+    text-align: center;
+    font-size: 0.65vw;
+    font-weight: 900;
+    text-transform: uppercase; 
+}
+
+footer nav {
+    display: flex;
+    width: 90vw;
+    margin: 1vw auto;
+    align-items: center;
+    justify-content: space-around;    
+}
+
+footer nav a{
+    font-size: 1.2vw;
+    font-weight: 600;
+    text-transform: capitalize; 
+}
+
+
+/* For tablet */
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+    a:hover{
+        opacity: 1;
+        text-decoration: underline;
+    }s
+
+    header {
+        height: 8vw;
+        position: relative;
+    }
+
+    .menu-bar{
+        width: 75vw;
+        
+    }
+    
+    .menu-bar a{
+        font-weight: 900;
+        font-size: 3vw;
+        text-transform: uppercase;
+    }
+
+    #logo{
+        transform: rotate(0deg);
+        font-size: 3vw;
+        top: 1vw;
+        border: 0.5vw solid #f09b51;
+    }
+
+    .slogan-banner{
+        position: relative;
+        border: none;
+        height: 43.5vw;
+        width: 100vw;
+    }
+
+    .slogan-banner article{
+        text-align: center;
+        width: 100vw;
+        top: 11vw;
+        left: 0 ;
+        font-size: 8vw;
+        font-weight: 900;
+    }
+
+    .slogan-banner article p{
+        display: none;
+    }
+    
+    .welcome{
+        height: 8vw;
+    }
+
+    .welcome article h2 {
+        font-size: 4vw;
+        font-weight: 600;
+        margin: 0;
+        text-transform: capitalize; 
+    }
+
+    .welcome article p {
+        display: none;
+    }
+
+    .middle{
+        height: 45vw;
+    }
+
+    .middle-box{
+        width: calc(7vw * 4.5);
+        height: calc(5vw * 4.5);
+    }
+
+    .middle-box img{
+        width: calc(7vw * 4.5 - 1vw);
+    }
+
+    .middle-box a {
+        font-size: 2vw;
+        font-weight: 600;
+        text-shadow: 0.5vw 0.5vw 0.75vw black;
+        text-transform: uppercase; 
+    }
+
+    footer {
+        display: flex;
+    }
+
+    footer nav {
+        display: flex;
+        width: 90vw;
+        margin: 0 auto;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    footer h1{
+        display: none;
+    }
+
+    footer nav a{
+        font-size: 2vw;
+        font-weight: 900;
+        text-transform: uppercase; 
+        letter-spacing: 0.8vw;
+    }
+
+}
+
+/* For mobile */
+@media only screen and (max-width: 767px) {
+    a:hover{
+        opacity: 1;
+        text-decoration: none;
+    }
+
+    a{
+        text-decoration: underline;
+    }
+
+    header {
+        height: 20vw;
+        position: relative;
+    }
+
+    .menu-bar{
+        width: 100vw;
+        margin: auto 0;
+        justify-content: space-evenly;  
+    }
+    
+    .menu-bar a{
+        font-weight: 900;
+        font-size: 4vw;
+        text-transform: uppercase;
+        text-decoration: underline;
+    }
+
+    #logo{
+        transform: rotate(0deg);
+        font-size: 5vw;
+        font-weight: 900;
+        text-shadow: 0.3vw 0vw #f09b51;
+        text-align: center;
+        top: 0.8vw;
+        width: 100vw;
+        margin: auto;
+        border: none;
+        text-decoration: none;
+    }
+
+    .slogan-banner{
+        position: relative;
+        border: none;
+        height: 50vw;
+        width: 100vw;
+    }
+
+    .slogan-banner article{
+        text-align: center;
+        width: 100vw;
+        top: 20vw;
+        left: 0 ;
+        font-size: 9.5vw;
+        font-weight: 900;
+    }
+
+    .slogan-banner article p{
+        display: none;
+    }
+    
+    .welcome{
+        height: 12vw;
+    }
+
+    .welcome article h2 {
+        font-size: 5vw;
+        font-weight: 400;
+        margin: 0;
+        text-transform: capitalize; 
+    }
+
+    .welcome article p {
+        display: none;
+    }
+
+    .middle{
+        width: auto;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .middle-column {
+        display: contents;
+    }
+
+    .middle-box{
+        width: auto;
+        height: 66vw;
+        margin: auto;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .middle-box img{
+        width: 88vw;
+        border-radius: 6vw;
+        border: 0.4vw solid darkgoldenrod;
+        flex: 1;
+    }
+
+    .middle-box a {
+        font-size: 5vw;
+        font-weight: 600;
+        text-shadow: 0.5vw 0.5vw 0.75vw black;
+        text-transform: uppercase; 
+        margin: 50vw 19vw 0vw;
+    }
+
+    footer {
+        display: flex;
+        border-top: 0.15vw solid darkgoldenrod;
+    }
+
+    footer nav {
+        display: flex;
+        width: 90vw;
+        margin: 0 auto;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    footer h1{
+        display: none;
+    }
+
+    footer nav a{
+        font-size: 3vw;
+        font-weight: 900;
+        text-transform: uppercase; 
+        letter-spacing: 0.6vw;
+    }
+}
+    
