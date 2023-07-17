@@ -44,7 +44,8 @@ body {
     black 4px,
     var(--black) 12px); /* For case link image die */
   background:
-    url('https://images.weserv.nl/?url=i.imgur.com/6QJjYMe.jpg')
+    /* url('https://images.weserv.nl/?url=i.imgur.com/6QJjYMe.jpg') */
+    url("../img/background_1.jpg")
     center no-repeat fixed;
   background-size: cover;
   scroll-behavior: smooth;
@@ -79,7 +80,7 @@ main {
   grid-gap: 14px 14px;
 }
 
-main>div{
+main>.neon{
   min-height: 8px;
   min-width: 8px;
   border-radius: 22.5%;
@@ -351,7 +352,7 @@ main>div{
   transition: 
     filter var(--trans-stop),
     box-shadow var(--trans-stop);
-  animation: blink 4.5s infinite;
+  animation: blink 450ms infinite;
   
 }
 
@@ -372,6 +373,39 @@ pointer-events: none;
   transform: perspective(32px) rotateX(18deg) scale(1.1, 0.5);
   animation: blink 4.5s infinite;
 }
+
+/* Follow Cursor */
+.cursor-follow {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: absolute;
+  border: 1px solid wheat;
+  transition-duration: 200ms;
+  transition-timing-function: ease-out;
+  animation: cursorFollowIn 500ms infinite alternate;
+  z-index: 1;
+}
+
+.cursor-follow::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: absolute;
+  border: 10px solid grey;
+  top: -10px;
+  left: -10px;
+  opacity: 0.5;
+  animation: cursorFollowOut 500ms infinite alternate;
+  z-index: 1;
+}
+
+.cursor-click {
+  animation: cursorClick 1000ms forwards;
+  border: 1px solid yellow; 
+}
+
 
 @keyframes spinner {
   to {
@@ -441,4 +475,35 @@ pointer-events: none;
   80% {cursor: url("../img/electric-select-9.gif"), pointer;}
   90% {cursor: url("../img/electric-select-10.gif"), pointer;}
   100% {cursor: url("../img/electric-select-1.gif"), pointer;}
+}
+
+@keyframes cursorFollowIn {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.7);
+  }
+}
+
+@keyframes cursorFollowOut {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.4);
+  }
+}
+
+@keyframes cursorClick {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(4);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
 }
