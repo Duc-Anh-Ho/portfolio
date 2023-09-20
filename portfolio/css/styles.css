@@ -352,7 +352,7 @@ main>.neon{
   transition: 
     filter var(--trans-stop),
     box-shadow var(--trans-stop);
-  animation: blink 450ms infinite;
+  animation: blink 4.5s infinite;
   
 }
 
@@ -414,24 +414,7 @@ pointer-events: none;
 }
 
 @keyframes blink {
-  20%,
-  24%,
-  55% {
-    filter: none;
-    box-shadow: none;
-    -webkit-box-reflect:
-      below 0 linear-gradient(transparent, transparent);
-    display: none;
-    background: none ;
-  }
-  0%,
-  19%,
-  21%,
-  23%,
-  25%,
-  54%,
-  56%,
-  100% {
+  0%, 18%, 20%, 22%, 23%, 25%, 50%, 55%, 80%, 85%, 100% {
     background-color: var(--orange-dark);
     /* Shadow Behind */
     filter: 
@@ -448,6 +431,13 @@ pointer-events: none;
     /* Shadow Relfect */
     -webkit-box-reflect:
       below 30px linear-gradient(transparent, rgba(0, 0, 0, 0.08));
+  }
+  19%, 21%, 24% {
+    filter: none;
+    box-shadow: none;
+    -webkit-box-reflect:
+      below 0 linear-gradient(transparent, transparent);
+    background: none ;
   }
 }
 
