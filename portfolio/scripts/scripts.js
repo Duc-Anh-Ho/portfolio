@@ -27,7 +27,7 @@ function delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-// Debouce
+// Debounce
 const debounce = (callback, delayMs) => {
     delayMs = delayMs || 10; // Default
     let timer = null;
