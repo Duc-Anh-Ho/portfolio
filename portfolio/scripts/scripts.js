@@ -10,6 +10,7 @@ const ALT = `avatar-art-${randomNum}.png`; // Random Image
 const SPACE_UNICOD = "\u205f";
 const TITLE_DASH = "|█|";
 const TITLE_ICON = "⭐";
+const CURSOR_OFFSET = 15;
 // const TITLE_TEXT = "𝓓𝓤𝓒" + SPACE_UNICOD + "𝓐𝓝𝓗" + SPACE_UNICOD + "➖" + SPACE_UNICOD + "𝓟𝓸𝓻𝓽𝓯𝓸𝓵𝓲𝓸 " + TITLE_ICON;
 const TITLE_TEXT = "𝓓.𝓐𝓝𝓗" + SPACE_UNICOD + "➖" + SPACE_UNICOD + "𝓟𝓸𝓻𝓽𝓯𝓸𝓵𝓲𝓸 " + TITLE_ICON;
 const favicon = document.querySelector("link[rel~='icon']");
@@ -25,6 +26,18 @@ const faviconImages = [
 function delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
+
+// Debouce
+const debounce = (callback, delayMs) => {
+    delayMs = delayMs || 10; // Default
+    let timer = null;
+    return (...args) => {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(() => {
+            callback(...args);
+        }, delayMs);
+    };
+};
 
 // Typing Tittle
 async function typingTitle() {
@@ -73,16 +86,17 @@ if (!favicon) {
 faviconChange(1000);
 
 // Follow cursor
-document.addEventListener("mousemove", (e) => {
-    cursorFollow.setAttribute("style", "top: " + (e.pageY - 10) + "px; left: " + (e.pageX - 10) + "px;");
-})
+document.addEventListener("mousemove", debounce((e) => {
+    cursorFollow.style.top = (e.clientY - CURSOR_OFFSET) + "px";
+    cursorFollow.style.left = (e.clientX - CURSOR_OFFSET) + "px";
+})); 
 
 // Click cursor
 document.addEventListener("click", (e) => {
     cursorFollow.classList.add("cursor-click");
     setTimeout(() => {
         cursorFollow.classList.remove("cursor-click");
-    }, 2000);
+    }, 800);
 })
 
 // --DEBUG ONLY

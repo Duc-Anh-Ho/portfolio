@@ -14,6 +14,12 @@
   --trans-medium: 1.8s 0.1s ease-in-out;
   --trans-fast: 0.6s 0.2s ease-in-out;
   --trans-stop: 0s 0s linear;
+  /* Blink */
+  --blink: blink 4.5s infinite;
+  /* Follow Cursor */
+  --cursor-dimension: 30px;
+  --cursor-offset: -15px;
+  --cursor-radius: 50%; /* circle */
 }
 /* Base styles */
 * {
@@ -171,8 +177,9 @@ main>.neon{
     border-radius var(--trans-slow),
     width var(--trans-slow),
     height var(--trans-slow),
-    background-color 0s 0.2s,
-    background-image var(--trans-medium);
+    background-color var(--trans-medium),
+    background-image var(--trans-medium),
+    box-shadow 0.8s 1.9s; /* Delay after hover image full*/
 }
 
 .card__img:hover {
@@ -191,16 +198,7 @@ main>.neon{
     inset 0 0 16px white,
     0 0 16px 4px var(--orange-light),
     0 0 64px 16px var(--orange-dark);
-  transition:
-    margin var(--trans-slow),
-    padding var(--trans-slow),
-    border var(--trans-slow),
-    border-radius var(--trans-slow),
-    width var(--trans-medium),
-    height var(--trans-medium),
-    background-color var(--trans-medium),
-    background-image var(--trans-medium),
-    box-shadow 0.8s 1.9s; /* Delay after hover image full*/
+
 }
 
 .card__img:hover img {
@@ -352,8 +350,7 @@ main>.neon{
   transition: 
     filter var(--trans-stop),
     box-shadow var(--trans-stop);
-  animation: blink 4.5s infinite;
-  
+  animation: var(--blink);
 }
 
 /* Shadow Below */
@@ -370,18 +367,24 @@ pointer-events: none;
     blur(48px)
     drop-shadow(0 0 0 var(--yellow-light)) !important;
   opacity: 0.3;
-  transform: perspective(32px) rotateX(18deg) scale(1.1, 0.5);
-  animation: blink 4.5s infinite;
+  transform: 
+    perspective(32px) 
+    rotateX(18deg) 
+    scale(1.1, 0.5);
+  animation: var(--blink);
 }
 
 /* Follow Cursor */
 .cursor-follow {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
+  pointer-events: none; /* Disable Hover Effect */
+  width: var(--cursor-dimension);
+  height: var(--cursor-dimension);
+  border-radius: var(--cursor-radius);
   position: absolute;
-  border: 1px solid wheat;
-  transition-duration: 200ms;
+  border: 0.5px solid wheat;
+  transition:
+    top 1s,
+    left 1s;
   transition-timing-function: ease-out;
   animation: cursorFollowIn 500ms infinite alternate;
   z-index: 1;
@@ -389,13 +392,13 @@ pointer-events: none;
 
 .cursor-follow::after {
   content: "";
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
+  width: var(--cursor-dimension);
+  height: var(--cursor-dimension);
+  border-radius: var(--cursor-radius);
   position: absolute;
-  border: 10px solid grey;
-  top: -10px;
-  left: -10px;
+  border: 15px solid grey;
+  top: var(--cursor-offset);
+  left: var(--cursor-offset);
   opacity: 0.5;
   animation: cursorFollowOut 500ms infinite alternate;
   z-index: 1;
@@ -469,28 +472,34 @@ pointer-events: none;
 
 @keyframes cursorFollowIn {
   from {
-    transform: scale(1);
+    transform: scale(0.5);
   }
   to {
-    transform: scale(0.7);
+    transform: scale(1.5);
   }
 }
 
 @keyframes cursorFollowOut {
   from {
-    transform: scale(1);
+    transform: scale(1.5);
   }
   to {
-    transform: scale(0.4);
+    transform: scale(0.5);
   }
 }
 
 @keyframes cursorClick {
   0% {
-    transform: scale(1);
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  25% {
+    transform: scale(2);
+    opacity: 0.8;
   }
   50% {
-    transform: scale(4);
+    transform: scale(6);
+    opacity: 0.5;
   }
   100% {
     transform: scale(1);
