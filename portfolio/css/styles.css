@@ -102,6 +102,7 @@ main>.neon{
     var(--black) 16px, 
     black 4px,
     var(--black) 12px);
+  caret-color: transparent;
 }
 
 #bar_top_left{
@@ -180,6 +181,7 @@ main>.neon{
     background-color var(--trans-medium),
     background-image var(--trans-medium),
     box-shadow 0.8s 1.9s; /* Delay after hover image full*/
+  z-index: 1; /* Prevent hover behind */
 }
 
 .card__img:hover {
@@ -355,7 +357,7 @@ main>.neon{
 
 /* Shadow Below */
 .neon::after {
-pointer-events: none;
+  pointer-events: none;
   content: "";
   position: absolute;
   top: 108%;
