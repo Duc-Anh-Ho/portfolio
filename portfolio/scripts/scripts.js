@@ -4,6 +4,8 @@
 // General
 const cursorFollow = document.querySelector(".cursor-follow");
 const randomImg = document.querySelector("#random-image");
+const neon = document.querySelector(".neon");
+const neonSound = document.querySelector("#neon-sound");
 const randomNum = Math.floor(Math.random() * 5); // Random 0 - 4
 const SRC = `./img/avatar-art-${randomNum}.png`; // Random Image
 const ALT = `avatar-art-${randomNum}.png`; // Random Image
@@ -71,6 +73,16 @@ async function faviconChange(delayMs) {
     }
 }
 
+// Neon Sound
+const playNeonSound = () => {
+    neonSound.currentTime = 0; // Reset audio to start
+    neonSound.play().catch(err => {
+        console.error('Neon sound play failed:', err);
+    });
+}
+
+// Neon Sound
+
 // --MAIN
 // Random Image
 randomImg.src = SRC;
@@ -89,17 +101,28 @@ faviconChange(1000);
 document.addEventListener("mousemove", debounce((e) => {
     cursorFollow.style.top = (e.clientY - CURSOR_OFFSET) + "px";
     cursorFollow.style.left = (e.clientX - CURSOR_OFFSET) + "px";
-})); 
+}),30); 
 
 // Click cursor
-document.addEventListener("click", (e) => {
+document.addEventListener("click", debounce((e) => {
+    playNeonSound();
     cursorFollow.classList.add("cursor-click");
     setTimeout(() => {
         cursorFollow.classList.remove("cursor-click");
     }, 800);
+}));
+
+// Neon sound
+neon.addEventListener("animationiteration", (e) => {
+    if (e.animationName === 'blink') {
+        setTimeout(() => {
+            playNeonSound();
+        }, 200);
+    }
 })
 
+
 // --DEBUG ONLY
-console.log("Random number: " + randomNum);
-console.log("Title: " + document.title);
-console.log("Title: " + favicon.href);
+// console.log("Random number: " + randomNum);
+// console.log("Title: " + document.title);
+// console.log("Title: " + favicon.href);

@@ -39,12 +39,14 @@
             const autoplay = () => {
                 if (audio.paused) {
                     audio.muted = true;
-                    audio.play();
+                    audio.play().catch(e => {
+                        // console.error("Audio auto play failed: ", e);
+                    });
                     audio.muted = false;
                 } 
             }
             if (audio.paused) {
-                autoplay ();
+                autoplay();
             } 
             document.body.addEventListener("mouseover", () => {
                 autoplay();

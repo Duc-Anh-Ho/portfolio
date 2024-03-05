@@ -59,7 +59,8 @@ body {
   animation: cursorDefault 400ms infinite;
   display: flex;
   place-content: center;
-  overflow: hidden /* Stop Scrolling */
+  overflow: hidden; /* Stop Scrolling */
+  caret-color: transparent;
 }
 
 header, footer {
@@ -102,7 +103,6 @@ main>.neon{
     var(--black) 16px, 
     black 4px,
     var(--black) 12px);
-  caret-color: transparent;
 }
 
 #bar_top_left{
