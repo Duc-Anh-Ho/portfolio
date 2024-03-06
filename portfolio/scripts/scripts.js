@@ -15,6 +15,8 @@ const TITLE_ICON = "⭐";
 const CURSOR_OFFSET = 15;
 // const TITLE_TEXT = "𝓓𝓤𝓒" + SPACE_UNICOD + "𝓐𝓝𝓗" + SPACE_UNICOD + "➖" + SPACE_UNICOD + "𝓟𝓸𝓻𝓽𝓯𝓸𝓵𝓲𝓸 " + TITLE_ICON;
 const TITLE_TEXT = "𝓓.𝓐𝓝𝓗" + SPACE_UNICOD + "➖" + SPACE_UNICOD + "𝓟𝓸𝓻𝓽𝓯𝓸𝓵𝓲𝓸 " + TITLE_ICON;
+const MAX_TYPING = 5; // Limit typing loop
+const MAX_FAVICON_CHANGE = 10;
 const favicon = document.querySelector("link[rel~='icon']");
 const faviconImages = [
     "./img/Bulb_icon_0.png",
@@ -43,14 +45,16 @@ const debounce = (callback, delayMs) => {
 
 // Typing Tittle
 async function typingTitle() {
-    while (true) {
+    let counter = 0
+    while (counter < MAX_TYPING) {
         document.title = TITLE_ICON;
         for (var i = 0; i < TITLE_TEXT.length; i++) {
-            await blinkDash(2, 80);
+            await blinkDash(2, 50);
             document.title = document.title.replace(TITLE_DASH, TITLE_TEXT.charAt(i));
             // console.log("Title: " + document.title);
         }
-        await delay(3000); // Stop 3 secs
+        await delay(5000); // Stop 3 secs
+        counter++;
     }
 }
 
@@ -64,12 +68,14 @@ async function blinkDash(times, delayMs) {
 }
 
 async function faviconChange(delayMs) {
-    while (true) {
+    let counter = 0;
+    while (counter < MAX_FAVICON_CHANGE) {
         for (let i = 0; i < faviconImages.length; i++) {
             favicon.href = faviconImages[i];
             await delay(delayMs);
         }
         await delay(delayMs * 2);
+        connter++; 
     }
 }
 
@@ -89,13 +95,13 @@ randomImg.src = SRC;
 randomImg.alt = ALT;
 // Typing Tittle
 typingTitle();
+faviconChange(800);
 // Favicon Light Up
 if (!favicon) {
     favicon = document.createElement("link");
     favicon.rel = "icon";
     document.head.appendChild(favicon);
 }
-faviconChange(1000);
 
 // Follow cursor
 document.addEventListener("mousemove", debounce((e) => {
