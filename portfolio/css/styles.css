@@ -411,6 +411,131 @@ main>.neon{
   border: 1px solid yellow; 
 }
 
+/* Switch */
+.switch {
+  width: 40px;
+  height: 70px;
+  top: 140px;
+  position: absolute;
+  z-index: 0;
+}
+
+.switch label {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* background-color: black;
+  box-shadow: 
+    0 0 0.625em 0.125em rgba(50, 0, 0, 0),
+    0 0 0.065em 0.125em black,
+    inset 0 0.125em 0.125em -0.125em green,
+    inset 0 0 0.125em 1em #47434c, inset 0 0 0.125em 20.125em black;
+  padding: 1em; */
+  border-radius: 0.3em;
+  perspective: 42em;
+  font: 0.6em monospace; /* Size of dot */
+}
+.switch label input {
+  display: none;
+}
+.switch label input:checked + .button {
+  transform: translateZ(1.25em) rotateX(25deg);
+  box-shadow: 0 -0.625em 1.25em #ff1818;
+}
+.switch label input:checked + .button .light {
+  animation: 
+    flicker 0.2s infinite 0.2s;
+}
+.switch label input:checked + .button .shine {
+  opacity: 1;
+}
+.switch label input:checked + .button .shadow {
+  opacity: 0;
+}
+.switch label .button {
+  transition: all 0.3s cubic-bezier(1, 0, 1, 1);
+  transform-origin: center center -1.25em;
+  transform: translateZ(0.25em) rotateX(-25deg);
+  transform-style: preserve-3d;
+  background-color: #9b0621;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+  background: linear-gradient(#980000 0%, #6f0000 30%, #6f0000 70%, #980000 100%);
+  background-repeat: no-repeat;
+}
+.switch label .button::before {
+  content: "";
+  background: linear-gradient(rgba(255, 255, 255, 0.8) 10%, rgba(255, 255, 255, 0.3) 30%, #650000 75%, #320000) 50% 50%/97% 97%, #b10000;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 3.125em;
+  transform-origin: top;
+  transform: rotateX(-90deg);
+  position: absolute;
+  top: 0;
+}
+.switch label .button::after {
+  content: "";
+  background-image: linear-gradient(#650000, #320000);
+  width: 100%;
+  height: 3.125em;
+  transform-origin: top;
+  transform: translateY(3.125em) rotateX(-90deg);
+  position: absolute;
+  bottom: 0;
+  box-shadow: 0 3.125em 0.5em 0em rgb(25, 0, 0), 0 5em 1.25em 0em rgba(50, 0, 0, 0.5);
+}
+.switch label .light {
+  opacity: 0;
+  animation: light-off 1s;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(#ffc97e, #ff1818 40%, transparent 70%);
+}
+.switch label .dots {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(transparent 30%, rgba(101, 0, 0, 0.7) 70%);
+  background-size: 0.625em 0.625em;
+}
+.switch label .characters {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(wheat, wheat) 50% 20%/5% 20%,
+    radial-gradient(circle, transparent 50%, wheat 52%, wheat 70%, transparent 72%) 50% 80%/33% 25%;
+  background-repeat: no-repeat;
+}
+.switch label .shine {
+  transition: all 0.3s cubic-bezier(1, 0, 1, 1);
+  opacity: 0.3;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(white, transparent 3%) 50% 50%/97% 97%,
+    linear-gradient(
+      rgba(255, 255, 255, 0.5), 
+      transparent 50%, 
+      transparent 80%, 
+      rgba(255, 255, 255, 0.5)
+    ) 50% 50%/97% 97%;
+  background-repeat: no-repeat;
+}
+.switch label .shadow {
+  transition: all 0.3s cubic-bezier(1, 0, 1, 1);
+  opacity: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent 70%, rgba(0, 0, 0, 0.8));
+  background-repeat: no-repeat;
+}
 
 @keyframes spinner {
   to {
@@ -505,6 +630,29 @@ main>.neon{
   }
   100% {
     transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes flicker {
+  0%, 60% ,100% {
+    opacity: 1;
+  }
+  20%, 80% {
+    opacity: 0.8;
+  }
+  10%, 35% {
+    opacity: 0.1;
+  }
+}
+@keyframes light-off {
+  0% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  90% {
     opacity: 0;
   }
 }
