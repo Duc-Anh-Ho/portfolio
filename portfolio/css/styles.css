@@ -415,7 +415,7 @@ main>.neon{
 .switch {
   width: 40px;
   height: 70px;
-  top: 140px;
+  top: 12vh;
   position: absolute;
   z-index: 0;
 }
@@ -438,21 +438,21 @@ main>.neon{
 .switch label input {
   display: none;
 }
-.switch label input:checked + .button {
+.switch label input:checked + .switch__btn {
   transform: translateZ(1.25em) rotateX(25deg);
   box-shadow: 0 -0.625em 1.25em #ff1818;
 }
-.switch label input:checked + .button .light {
+.switch label input:checked + .switch__btn .switch-light {
   animation: 
     flicker 0.2s infinite 0.2s;
 }
-.switch label input:checked + .button .shine {
+.switch label input:checked + .switch__btn .switch-shine {
   opacity: 1;
 }
-.switch label input:checked + .button .shadow {
+.switch label input:checked + .switch__btn .switch-shadow {
   opacity: 0;
 }
-.switch label .button {
+.switch label .switch__btn {
   transition: all 0.3s cubic-bezier(1, 0, 1, 1);
   transform-origin: center center -1.25em;
   transform: translateZ(0.25em) rotateX(-25deg);
@@ -465,7 +465,7 @@ main>.neon{
   background: linear-gradient(#980000 0%, #6f0000 30%, #6f0000 70%, #980000 100%);
   background-repeat: no-repeat;
 }
-.switch label .button::before {
+.switch label .switch__btn::before {
   content: "";
   background: linear-gradient(rgba(255, 255, 255, 0.8) 10%, rgba(255, 255, 255, 0.3) 30%, #650000 75%, #320000) 50% 50%/97% 97%, #b10000;
   background-repeat: no-repeat;
@@ -476,7 +476,7 @@ main>.neon{
   position: absolute;
   top: 0;
 }
-.switch label .button::after {
+.switch label .switch__btn::after {
   content: "";
   background-image: linear-gradient(#650000, #320000);
   width: 100%;
@@ -487,7 +487,7 @@ main>.neon{
   bottom: 0;
   box-shadow: 0 3.125em 0.5em 0em rgb(25, 0, 0), 0 5em 1.25em 0em rgba(50, 0, 0, 0.5);
 }
-.switch label .light {
+.switch label .switch-light {
   opacity: 0;
   animation: light-off 1s;
   position: absolute;
@@ -495,23 +495,23 @@ main>.neon{
   height: 100%;
   background-image: radial-gradient(#ffc97e, #ff1818 40%, transparent 70%);
 }
-.switch label .dots {
+.switch label .switch-dots {
   position: absolute;
   width: 100%;
   height: 100%;
   background-image: radial-gradient(transparent 30%, rgba(101, 0, 0, 0.7) 70%);
   background-size: 0.625em 0.625em;
 }
-.switch label .characters {
-  position: absolute;
+.switch label .switch-characters {
+  position: relative;
   width: 100%;
   height: 100%;
   background: 
-    linear-gradient(wheat, wheat) 50% 20%/5% 20%,
-    radial-gradient(circle, transparent 50%, wheat 52%, wheat 70%, transparent 72%) 50% 80%/33% 25%;
+    linear-gradient(wheat, wheat) 50% 23%/5% 20%,
+    radial-gradient(circle, transparent 33%, wheat 50%, wheat 50%, transparent 66%) 50% 76%/33% 27%;
   background-repeat: no-repeat;
 }
-.switch label .shine {
+.switch label .switch-shine {
   transition: all 0.3s cubic-bezier(1, 0, 1, 1);
   opacity: 0.3;
   position: absolute;
@@ -527,7 +527,7 @@ main>.neon{
     ) 50% 50%/97% 97%;
   background-repeat: no-repeat;
 }
-.switch label .shadow {
+.switch label .switch-shadow {
   transition: all 0.3s cubic-bezier(1, 0, 1, 1);
   opacity: 1;
   position: absolute;
