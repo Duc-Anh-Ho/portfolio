@@ -50,24 +50,23 @@ async function typingTitle() {
     let counter = 0
     while (counter < MAX_TYPING) {
         document.title = TITLE_ICON;
-        for (var i = 0; i < TITLE_TEXT.length; i++) {
+        for (let i = 0; i < TITLE_TEXT.length; i++) {
             await blinkDash(2, 50);
             document.title = document.title.replace(TITLE_DASH, TITLE_TEXT.charAt(i));
-            // console.log("Title: " + document.title);
         }
-        await delay(5000); // Stop 3 secs
+        await delay(5000); // Stop 5 secs
         counter++;
     }
-}
+};
 
 async function blinkDash(times, delayMs) {
-    for (var i = 0; i < times; i++) {
+    for (let i = 0; i < times; i++) {
         document.title = document.title.replace(TITLE_DASH, "");
         await delay(delayMs);
         document.title += TITLE_DASH;
         await delay(delayMs);
     }
-}
+};
 
 async function faviconChange(delayMs) {
     let counter = 0;
@@ -79,26 +78,34 @@ async function faviconChange(delayMs) {
         await delay(delayMs * 2);
         counter++; 
     }
+};
+
+// Follow Cursor
+const autoMoveCursor = (e) => {
+    const clientX = (e.clientX || e.touches[0].clientX) - CURSOR_OFFSET + "px";
+    const clientY = (e.clientY || e.touches[0].clientY) - CURSOR_OFFSET + "px";
+    document.documentElement.style.setProperty("--cursorX", clientX);
+    document.documentElement.style.setProperty("--cursorY", clientY);
 }
 
 // Neon Sound
 const playNeonSound = () => {
     neonSound.currentTime = 0; // Reset audio to start
     neonSound.play().catch(err => {
-        console.error('Neon sound play failed:', err);
+        console.error("Neon sound play failed:", err);
     });
     if (navigator.vibrate) navigator.vibrate(800); // Sound vibration effect
-}
+};
 
 // Switch Sound
 const playSwitchSound = () => {
     neonSound.currentTime = 0; // Reset audio to start
     const sound = new Audio(SWITCH_SOUND);
     sound.play().catch(err => {
-        console.error('Switch sound play failed:', err);
+        console.error("Switch sound play failed:", err);
     });
     if (navigator.vibrate) navigator.vibrate(100); // Sound vibration effect
-}
+};
 
 // --MAIN
 // Random Image
@@ -116,9 +123,11 @@ if (!favicon) {
 
 // Follow cursor
 document.addEventListener("mousemove", debounce((e) => {
-    cursorFollow.style.top = (e.clientY - CURSOR_OFFSET) + "px";
-    cursorFollow.style.left = (e.clientX - CURSOR_OFFSET) + "px";
-}),30); 
+    autoMoveCursor(e);
+}),30);
+document.addEventListener("touchmove", debounce((e) => {
+    autoMoveCursor(e);
+}),30);
 
 // Click cursor
 document.addEventListener("click", debounce((e) => {
@@ -131,17 +140,17 @@ document.addEventListener("click", debounce((e) => {
 
 // Neon auto sound
 neon.addEventListener("animationiteration", (e) => {
-    if (e.animationName === 'blink') {
+    if (e.animationName === "blink") {
         setTimeout(() => {
             playNeonSound();
-        }, 500);
+        }, 200);
     }
 })
 
 // Switch Click
-switchBtn.addEventListener("click", (e) => {
+switchBtn.addEventListener("click", debounce((e) => {
     playSwitchSound();
-});
+}),30); 
 
 // --DEBUG ONLY
 // console.log("Random number: " + randomNum);

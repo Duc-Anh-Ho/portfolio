@@ -17,10 +17,29 @@
   /* Blink */
   --blink: blink 5.5s infinite;
   /* Follow Cursor */
+  --cursorX: 50vmax;
+  --cursorY: 50vmin;
   --cursor-dimension: 30px;
   --cursor-offset: -15px;
   --cursor-radius: 50%; /* circle */
 }
+
+/* :root:before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: radial-gradient(
+    circle 10vmax at center,
+    transparent 30%,
+    rgba(0 0 0 / 40%) 60%,
+    rgba(0 0 0 / 60%) 120%,
+    rgba(0 0 0 / 80%) 150%,
+    rgba(0 0 0 / 90%) 200%
+  );
+  z-index: 10;
+} */
 /* Base styles */
 * {
   margin: 0;
@@ -379,6 +398,8 @@ main>.neon{
 /* Follow Cursor */
 .cursor-follow {
   pointer-events: none; /* Disable Hover Effect */
+  top: var(--cursorY);
+  left: var(--cursorX);
   width: var(--cursor-dimension);
   height: var(--cursor-dimension);
   border-radius: var(--cursor-radius);
@@ -415,9 +436,9 @@ main>.neon{
 .switch {
   width: 40px;
   height: 70px;
-  top: 12vh;
+  top: 7vmax;
   position: absolute;
-  z-index: 0;
+  z-index: 1;
 }
 
 .switch label {
@@ -461,7 +482,6 @@ main>.neon{
   width: 100%;
   height: 100%;
   position: relative;
-  cursor: pointer;
   background: linear-gradient(#980000 0%, #6f0000 30%, #6f0000 70%, #980000 100%);
   background-repeat: no-repeat;
 }
