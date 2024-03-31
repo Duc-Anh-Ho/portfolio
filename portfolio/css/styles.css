@@ -22,24 +22,42 @@
   --cursor-dimension: 30px;
   --cursor-offset: -15px;
   --cursor-radius: 50%; /* circle */
+  /* Card */
+  --card-width: 300px;
+  --card-height: 400px;
+  --card-radius: 30px;
+  /* Switch */
+  --switch-width: 40px;
+  --switch-height: 70px;
+  --switch-margin-bot: calc(var(--card-height) + 200px);
+  /* Tourch Light */
+  --tourch-radius: 3.2vmax;
+  --tourch-fix-left: 50vmax;
+  --tourch-fix-top: 50vmin;
 }
 
-/* :root:before {
+/* Tourch Light Effect */
+:root:before {
   content: '';
   display: block;
   width: 100%;
   height: 100%;
   position: fixed;
-  background: radial-gradient(
-    circle 10vmax at center,
-    transparent 30%,
-    rgba(0 0 0 / 40%) 60%,
-    rgba(0 0 0 / 60%) 120%,
-    rgba(0 0 0 / 80%) 150%,
-    rgba(0 0 0 / 90%) 200%
-  );
+  background: 
+    radial-gradient(
+      circle var(--tourch-radius) at var(--tourch-fix-left) var(--tourch-fix-top)
+      , transparent 10%
+      , rgba(0 0 0 / 30%) 80%
+      , rgba(0 0 0 / 40%) 100%
+      , rgba(0 0 0 / 60%) 120%
+      , rgba(0 0 0 / 75%) 150%
+      , rgba(0 0 0 / 75%) 160%
+      , rgba(0 0 0 / 90%) 180%
+      , rgba(0 0 0 / 100%) 200%
+    )
+  ;
   z-index: 10;
-} */
+}
 /* Base styles */
 * {
   margin: 0;
@@ -170,9 +188,9 @@ main>.neon{
 .card {
   font-family: "Poppins", sans-serif;
   background: black !important;
-  width: 300px;
-  height: 400px;
-  border-radius: 30px;
+  width: var(--card-width);
+  height: var(--card-height);
+  border-radius: var(--card-radius);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -434,11 +452,11 @@ main>.neon{
 
 /* Switch */
 .switch {
-  width: 40px;
-  height: 70px;
-  top: 7vmax;
+  width: var(--switch-width);
+  height: var(--switch-height);
+  margin-bottom: var(--switch-margin-bot);
   position: absolute;
-  z-index: 1;
+  z-index: 11;
 }
 
 .switch label {
