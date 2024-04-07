@@ -15,7 +15,8 @@
   --trans-fast: 0.6s 0.2s ease-in-out;
   --trans-stop: 0s 0s linear;
   /* Blink */
-  --blink: blink 5.5s infinite;
+  --blink: state 5.5s infinite;
+  /* --blink: blink 5.5s infinite; */
   /* Follow Cursor */
   --cursorX: 50vmax;
   --cursorY: 50vmin;
@@ -31,33 +32,35 @@
   --switch-height: 70px;
   --switch-margin-bot: calc(var(--card-height) + 200px);
   /* Tourch Light */
-  --tourch-radius: 3.2vmax;
+  --tourch-radius: max(3vmax, 50px);
   --tourch-fix-left: 50vmax;
   --tourch-fix-top: 50vmin;
 }
 
 /* Tourch Light Effect */
-:root:before {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 100%;
-  position: fixed;
+.torch-light {
+  position: absolute;
+  inset: 0;
   background: 
     radial-gradient(
-      circle var(--tourch-radius) at var(--tourch-fix-left) var(--tourch-fix-top)
-      , transparent 10%
-      , rgba(0 0 0 / 30%) 80%
-      , rgba(0 0 0 / 40%) 100%
-      , rgba(0 0 0 / 60%) 120%
-      , rgba(0 0 0 / 75%) 150%
-      , rgba(0 0 0 / 75%) 160%
-      , rgba(0 0 0 / 90%) 180%
-      , rgba(0 0 0 / 100%) 200%
+      circle var(--tourch-radius) at 
+        var(--tourch-fix-left) 
+        var(--tourch-fix-top)
+      , rgba(0, 0, 0, 0) 40%
+      , rgba(0, 0, 0, 0.3) 80%
+      , rgba(0, 0, 0, 0.4) 100%
+      , rgba(0, 0, 0, 0.6) 120%
+      , rgba(0, 0, 0, 0.75) 150%
+      , rgba(0, 0, 0, 0.75) 160%
+      , rgba(0, 0, 0, 0.9) 180%
+      , rgba(0, 0, 0, 0.95) 200%
     )
   ;
+  /* NOTE: Test mode */
+  /* mix-blend-mode: overlay;  */
   z-index: 10;
 }
+
 /* Base styles */
 * {
   margin: 0;
@@ -122,12 +125,6 @@ main {
   grid-auto-columns: minmax(2px,auto);
   grid-template-rows: 0.75% 1fr;
   grid-gap: 14px 14px;
-}
-
-main>.neon{
-  min-height: 8px;
-  min-width: 8px;
-  border-radius: 22.5%;
 }
 
 .container{
@@ -272,7 +269,7 @@ main>.neon{
 }
 
 .card__name:hover, .card__job-title:hover{
-  /* neon */
+  /* Neon */
   text-shadow: 
     0 0 4px var(--orange-light), 
     0 0 8px var(--orange-light), 
@@ -385,11 +382,17 @@ main>.neon{
 }
 
  /* NEON Effect */
+ main>.neon {
+  min-height: 8px;
+  min-width: 8px;
+  border-radius: 22.5%;
+}
+
 .neon {
   transition: 
     filter var(--trans-stop),
     box-shadow var(--trans-stop);
-  animation: var(--blink);
+    animation: var(--blink);
 }
 
 /* Shadow Below */
@@ -581,6 +584,7 @@ main>.neon{
   }
 }
 
+/* Neon blink */
 @keyframes blink {
   0%, 18%, 20%, 22%, 23%, 25%, 50%, 55%, 80%, 85%, 100% {
     background-color: var(--orange-dark);
@@ -609,6 +613,27 @@ main>.neon{
   }
 }
 
+/* Neon state*/
+@keyframes state {
+  0%, 100% {
+    background-color: var(--orange-dark);
+    /* Shadow Behind */
+    filter: 
+      /* drop-shadow(-32px -48px 52px var(--yellow-light)); */
+      drop-shadow(-16px -24px 48px var(--white));
+    /* Shadow Around */
+    box-shadow: 
+      0 0 4px var(--orange-dark),
+      0 0 8px var(--orange-dark),
+      0 0 16px var(--orange-dark),
+      0 0 32px var(--orange-dark),
+      0 0 64px var(--orange-light),
+      0 0 128px var(--orange-light);
+    /* Shadow Relfect */
+    -webkit-box-reflect:
+      below 30px linear-gradient(transparent, rgba(0, 0, 0, 0.08));  
+  }
+}
 /* Animated Cursor */
 @keyframes cursorDefault {
   0% {cursor: url("../img/electric-pointer-1.gif"), default;}
