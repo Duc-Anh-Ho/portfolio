@@ -21,6 +21,7 @@ const CURSOR_OFFSET = 15;
 // const TITLE_TEXT = "𝓓𝓤𝓒" + SPACE_UNICOD + "𝓐𝓝𝓗" + SPACE_UNICOD + "➖" + SPACE_UNICOD + "𝓟𝓸𝓻𝓽𝓯𝓸𝓵𝓲𝓸 " + TITLE_ICON;
 const TITLE_TEXT = "𝓓.𝓐𝓝𝓗" + SPACE_UNICOD + "➖" + SPACE_UNICOD + "𝓟𝓸𝓻𝓽𝓯𝓸𝓵𝓲𝓸 " + TITLE_ICON;
 const MAX_TYPING = 5; // Limit typing loop
+const MAX_BLINKING = 5; // Limit blinking loop
 const MAX_FAVICON_CHANGE = 10;
 const faviconImages = [
     "./img/Bulb_icon_0.png",
@@ -117,8 +118,6 @@ const setFixTourch = () => {
     const switchBtnRect = switchBtn.getBoundingClientRect();
     const tourchFixTop = switchBtnRect.top + SWITCH_BTN_HEIGHT / 2 + "px";
     const tourchFixLeft = switchBtnRect.left + SWITCH_BTN_WIDTH / 2 + "px"
-    console.log("tourchFixTop:", tourchFixTop);
-    console.log("tourchFixLeft:", tourchFixLeft);
     ROOT_STYLE.setProperty("--tourch-fix-top", tourchFixTop);
     ROOT_STYLE.setProperty("--tourch-fix-left", tourchFixLeft);
 }
@@ -146,28 +145,35 @@ document.addEventListener("touchmove", debounce((e) => {
 
 // Click cursor
 document.addEventListener("click", debounce((e) => {
-    // playNeonSound();
+    playNeonSound();
     cursorFollow.classList.add("cursor-click");
     setTimeout(() => {
         cursorFollow.classList.remove("cursor-click");
     }, 800);
 }));
 
-// Neon auto sound
-// TODO: Fix Sound at first Blink
-neons[0].addEventListener("animationiteration", (e) => {
-    if (e.animationName === "blink") {
-        setTimeout(() => {
-            playNeonSound();
-        }, 200);
-    }
-})
-
 // Switch Click
 switchInput.addEventListener("change", debounce((e) => {
+    let switchFlg = e.target.checked;
+    let counter = 0;
     playSwitchSound();
     torch.classList.toggle('torch-light');
-    e.target.checked ? ROOT_STYLE.setProperty("--blink", "blink 5.5s infinite") : ROOT_STYLE.setProperty("--blink", "state 100s infinite")
+    if (switchFlg) {
+        ROOT_STYLE.setProperty("--blink", "blink 5.5s infinite")
+        neons[0].onanimationiteration = (e) => {
+            if (counter >= MAX_BLINKING * 2) {
+                ROOT_STYLE.setProperty("--blink", "state 100s infinite")
+                return;
+            }
+            if (e.animationName === "blink") {
+                counter++; 
+                playNeonSound();
+            }
+        };
+    } else {
+        ROOT_STYLE.setProperty("--blink", "state 100s infinite")
+        neons[0].onanimationiteration = null;
+    }
 }),30); 
 
 // Move Fix Ligit

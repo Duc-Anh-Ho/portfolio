@@ -15,7 +15,7 @@
   --trans-fast: 0.6s 0.2s ease-in-out;
   --trans-stop: 0s 0s linear;
   /* Blink */
-  --blink: state 5.5s infinite;
+  --blink: blink 15s infinite;
   /* --blink: blink 5.5s infinite; */
   /* Follow Cursor */
   --cursorX: 50vmax;
